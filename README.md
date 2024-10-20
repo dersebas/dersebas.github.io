@@ -6,60 +6,58 @@
     <title>KE-Rechner</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet"> <!-- Fetterer Font -->
     <style>
-        /* Globale Schriftart und dunkler Hintergrund */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #121212; /* Dunkler Hintergrund */
+            background-color: #121212; 
             margin: 0;
-            padding: 0; /* Kein zusätzliches Padding */
+            padding: 0;
             color: #f4f4f4;
             display: flex;
-            justify-content: center; /* Zentrieren des Containers horizontal */
-            align-items: center; /* Container mittig vertikal ausrichten */
-            height: 100vh; /* Vollständige Höhe des Viewports */
+            justify-content: center;
+            align-items: center; 
+            height: 100vh; 
         }
 
         /* Container */
         .container {
             max-width: 400px;
-            width: 100%; /* Volle Breite bis zur Maximalbreite */
-            height: 80%; /* Containerhöhe reduziert */
-            background: #1e1e1e; /* Dunkler Hintergrund für den Container */
-            padding: 30px; /* Mehr Padding für den Container */
+            width: 100%; 
+            height: 80%;
+            background: #1e1e1e; 
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             color: #e0e0e0;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Container-Inhalt oben ausrichten */
-            position: relative; /* Für den Rand */
-            margin-top: 20px; /* Container nach oben verschieben */
+            justify-content: flex-start;
+            position: relative;
+            margin-top: 20px;
         }
 
         h2 {
             text-align: center;
-            color: #778899; /* Angepasste Akzentfarbe */
-            margin: 20px 0 30px; /* Mehr Platz über der Überschrift */
-            font-weight: 700; /* Fetterer Text */
-            font-size: 36px; /* Größere Schriftgröße */
+            color: #778899;
+            margin: 20px 0 30px;
+            font-weight: 700;
+            font-size: 36px;
         }
 
         /* Stil für Eingabefelder, Buttons und Auswahlfelder */
         input, select, button, #totalKEBox {
             width: 100%;
-            height: 50px; /* Größere Höhe */
-            margin: 15px 0; /* Mehr Abstand zwischen den Elementen */
-            padding: 10px; /* Mehr Padding für Eingabefelder */
-            font-size: 22px; /* Größere Schriftgröße */
+            height: 50px; 
+            margin: 15px 0;
+            padding: 10px;
+            font-size: 22px;
             border: none;
             border-radius: 8px;
-            background-color: #2a2a2a; /* Dunklerer Hintergrund für Eingabefelder */
+            background-color: #2a2a2a; 
             color: #e0e0e0;
             box-sizing: border-box;
-            font-weight: 700; /* Fetterer Text */
+            font-weight: 700;
         }
 
-        /* Entfernen der Pfeile für das Zahleneingabefeld */
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
@@ -72,27 +70,25 @@
 
         input:focus, button:focus {
             outline: none;
-            box-shadow: 0 0 5px #778899; /* Angepasste Akzentfarbe */
+            box-shadow: 0 0 5px #778899;
         }
 
         /* Button-Styling */
         button {
-            background-color: #778899; /* Angepasste Akzentfarbe */
+            background-color: #778899;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            font-weight: 700; /* Fetterer Text */
-            font-size: 22px; /* Größere Schriftgröße */
-        }
+            font-weight: 700; 
+            font-size: 22px;
 
         button:hover {
-            background-color: #4d6469; /* Dunklerer Farbton für Hover-Effekt */
+            background-color: #4d6469;
         }
 
-        /* Styling für die Suchvorschläge */
         #foodSuggestions {
-            max-height: 200px; /* Höhere Vorschlagsbox */
-            background-color: #333; /* Dunkler Hintergrund für Vorschläge */
+            max-height: 200px; 
+            background-color: #333;
             position: relative;
             width: 100%;
             border-radius: 8px;
@@ -100,15 +96,15 @@
             z-index: 1000;
             display: none;
             color: #f4f4f4;
-            font-weight: 700; /* Fetterer Text */
-            overflow: hidden; /* Scrollbalken ausblenden */
+            font-weight: 700;
+            overflow: hidden;
         }
 
         #foodSuggestions div {
-            padding: 10px; /* Mehr Padding für Vorschläge */
+            padding: 10px;
             cursor: pointer;
             transition: background-color 0.2s ease;
-            font-size: 20px; /* Größere Schriftgröße für Vorschläge */
+            font-size: 20px;
             color: #e0e0e0;
         }
 
@@ -116,60 +112,57 @@
             background-color: #555;
         }
 
-        /* Ergebnisliste Styling */
         ul {
             list-style-type: none;
             padding: 0;
             margin-top: 20px;
             width: 100%;
-            background: #1e1e1e; /* Dunkler Hintergrund für die Liste */
+            background: #1e1e1e;
         }
 
         ul li {
-            background: #2a2a2a; /* Dunklerer Hintergrund für Listeneinträge */
-            padding: 10px; /* Mehr Padding für Listeneinträge */
+            background: #2a2a2a;
+            padding: 10px;
             margin: 5px 0;
             border-radius: 8px;
             color: #cccccc;
             display: flex;
-            justify-content: space-between; /* Flexbox für gleichmäßige Verteilung */
+            justify-content: space-between; 
             align-items: center;
             box-sizing: border-box;
-            font-size: 20px; /* Größere Schriftgröße für Listeneinträge */
-            font-weight: 700; /* Fetterer Text */
-            height: 50px; /* Gleiche Höhe für alle Listeneinträge */
+            font-size: 20px;
+            font-weight: 700; 
+            height: 50px;
         }
 
-        /* Stil für den kleinen, unauffälligen Löschen-Button */
         .delete-btn {
             background-color: transparent;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px; /* Größere Schriftgröße für den Button */
-            font-weight: 700; /* Fetterer Text */
+            font-size: 20px;
+            font-weight: 700;
             transition: background-color 0.3s ease;
-            width: 30px; /* Größere Breite für den Button */
-            height: 30px; /* Größere Höhe für den Button */
+            width: 30px;
+            height: 30px;
             display: flex;
-            align-items: center; /* Zentrieren */
-            justify-content: center; /* Zentrieren */
+            align-items: center; 
+            justify-content: center;
         }
 
         .delete-btn:hover {
-            background-color: #ff4d4d; /* Rot für Löschen */
+            background-color: #ff4d4d;
         }
 
-        /* Gesamt-KE-Box Styling */
         #totalKEBox {
             text-align: center;
             background-color: transparent;
-            color: #778899; /* Angepasste Akzentfarbe */
-            height: 60px; /* Größere Höhe */
-            line-height: 60px; /* Vertikale Zentrierung */
-            font-size: 24px; /* Größere Schriftgröße */
-            font-weight: 700; /* Fetterer Text */
+            color: #778899; 
+            height: 60px; 
+            line-height: 60px;
+            font-size: 24px; 
+            font-weight: 700;
             width: 100%;
             margin-top: 20px;
             display: flex;
@@ -177,43 +170,41 @@
             justify-content: center;
         }
 
-        /* Label für Portionsgröße */
         #portionLabel {
             text-align: center;
-            font-size: 18px; /* Größere Schriftgröße */
+            font-size: 18px;
             color: #e0e0e0;
-            margin-top: 10px; /* Mehr Platz über dem Label */
+            margin-top: 10px;
             display: none;
-            font-weight: 700; /* Fetterer Text */
+            font-weight: 700;
         }
 
-        /* Responsive Design */
         @media (max-width: 500px) {
             body {
                 padding: 10px;
             }
 
             .container {
-                padding: 25px; /* Mehr Padding für den Container */
-                margin-top: 20px; /* Container nach oben verschieben */
-                height: 80%; /* Containerhöhe reduziert */
+                padding: 25px;
+                margin-top: 20px; 
+                height: 80%;
             }
 
             h2 {
-                font-size: 32px; /* Größere Schriftgröße für mobile Ansicht */
+                font-size: 32px;
             }
 
             input, button, #totalKEBox {
-                height: 50px; /* Gleiche Höhe für alle Eingabefelder und Buttons */
-                font-size: 20px; /* Größere Schriftgröße für mobile Ansicht */
+                height: 50px;
+                font-size: 20px; 
             }
 
             ul li {
-                font-size: 18px; /* Größere Schriftgröße für Listeneinträge */
+                font-size: 18px; 
             }
 
             #portionLabel {
-                font-size: 16px; /* Größere Schriftgröße für Portionsgröße */
+                font-size: 16px;
             }
         }
     </style>
@@ -248,7 +239,7 @@
     function showSuggestions() {
         const input = document.getElementById("foodSearch").value;
         const suggestions = document.getElementById("foodSuggestions");
-        suggestions.innerHTML = ""; // Alte Vorschläge löschen
+        suggestions.innerHTML = "";
 
         if (input.length > 0) {
             const filteredFoods = Object.keys(carbData).filter(food => food.toLowerCase().includes(input.toLowerCase()));
@@ -256,18 +247,18 @@
                 const div = document.createElement("div");
                 div.textContent = food;
                 div.onclick = () => {
-                    document.getElementById("foodSearch").value = food; // Ausgewähltes Lebensmittel in das Suchfeld einfügen
-                    suggestions.style.display = "none"; // Vorschläge verstecken
+                    document.getElementById("foodSearch").value = food; 
+                    suggestions.style.display = "none"; 
                 };
                 suggestions.appendChild(div);
             });
             if (filteredFoods.length > 0) {
-                suggestions.style.display = "block"; // Vorschläge anzeigen
+                suggestions.style.display = "block"; 
             } else {
-                suggestions.style.display = "none"; // Vorschläge verstecken
+                suggestions.style.display = "none";
             }
         } else {
-            suggestions.style.display = "none"; // Vorschläge verstecken
+            suggestions.style.display = "none"; 
         }
     }
 
@@ -277,52 +268,50 @@
         const amount = parseFloat(document.getElementById("foodAmount").value);
 
         if (food in carbData && !isNaN(amount) && amount > 0) {
-            const carbsPer100g = carbData[food].carbs; // Kohlenhydrate pro 100g
-            const carbsPerGram = carbsPer100g / 100; // Kohlenhydrate pro Gramm
-            const totalCarbs = carbsPerGram * amount; // Gesamte Kohlenhydrate für die eingegebene Menge
-            const totalKE = totalCarbs / 10; // KE-Berechnung (1 KE = 10g Kohlenhydrate)
+            const carbsPer100g = carbData[food].carbs; 
+            const carbsPerGram = carbsPer100g / 100; 
+            const totalCarbs = carbsPerGram * amount; 
+            const totalKE = totalCarbs / 10; 
 
-            // Listen-Element erstellen
             const foodList = document.getElementById("foodList");
             const li = document.createElement("li");
-            li.textContent = `${food}: ${amount}g (KE: ${totalKE.toFixed(2)})`; // Eingabemenge und KE anzeigen
+            li.textContent = `${food}: ${amount}g (KE: ${totalKE.toFixed(2)})`; 
 
-            // Löschen-Button hinzufügen
+
             const deleteButton = document.createElement("button");
-            deleteButton.textContent = "✖"; // Löschen-Symbol
+            deleteButton.textContent = "✖"; 
             deleteButton.classList.add("delete-btn");
-            deleteButton.onclick = () => deleteItem(foodList.children.length); // Löschen-Funktion
+            deleteButton.onclick = () => deleteItem(foodList.children.length);
             li.appendChild(deleteButton);
             foodList.appendChild(li);
 
-            // Gesamt-KE berechnen
             updateTotalKE();
-            // Eingabefelder zurücksetzen
+
             document.getElementById("foodSearch").value = "";
             document.getElementById("foodAmount").value = "";
-            document.getElementById("portionLabel").style.display = "none"; // Portionsgröße verstecken
+            document.getElementById("portionLabel").style.display = "none"; 
         } else {
             alert("Bitte ein gültiges Lebensmittel und eine Menge angeben.");
         }
     }
 
-    // Gesamt-KE aktualisieren
+  
     function updateTotalKE() {
         const foodList = document.getElementById("foodList");
         const totalKEBox = document.getElementById("totalKEBox");
         let totalKE = 0;
         const items = foodList.getElementsByTagName("li");
         for (let i = 0; i < items.length; i++) {
-            const keValue = parseFloat(items[i].textContent.split("KE: ")[1]); // KE-Wert extrahieren
+            const keValue = parseFloat(items[i].textContent.split("KE: ")[1]); 
             totalKE += isNaN(keValue) ? 0 : keValue;
         }
         totalKEBox.textContent = `Gesamt KE: ${totalKE.toFixed(2)}`;
     }
 
-    // Löschen-Funktion
+
     function deleteItem(index) {
         const foodList = document.getElementById("foodList");
-        foodList.removeChild(foodList.children[index - 1]); // Den korrekten Index verwenden
+        foodList.removeChild(foodList.children[index - 1]); 
         updateTotalKE();
     }
 </script>
