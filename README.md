@@ -210,7 +210,7 @@
 <body>
 
 <div class="container">
-    <h2>Kohlenhydrate Rechner</h2>
+    <h2>KE-Rechner</h2>
     <input type="text" id="foodSearch" placeholder="Lebensmittel suchen..." oninput="showSuggestions()">
     <div id="foodSuggestions"></div>
     <input type="number" id="foodAmount" placeholder="Menge (g)" min="1">
